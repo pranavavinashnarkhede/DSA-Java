@@ -1,54 +1,66 @@
-import java.util.*;
-
-class ValidPalindrome
-{
-    public static void main(String A[])
+class Solution {
+    public boolean isPalindrome(String s) 
     {
-        Scanner sobj = new Scanner(System.in);
-
-        System.out.print("Enter string to check palindrome or not : ");
-        String str = sobj.nextLine();
-
-        int left = 0 , right = str.length()-1;
-        boolean bFlag = true ;
+        int left = 0 ;
+        int right = s.length() - 1 ;
 
         while(left < right)
         {
-            if((str.charAt(left) != str.charAt(right)))
+            char ch1 = Character.toLowerCase(s.charAt(left));
+            char ch2 = Character.toLowerCase(s.charAt(right));
+
+            if(!Character.isLetterOrDigit(ch1))
             {
-                bFlag = false;
-                break;
+                left++;
+                continue;
             }
-           
+
+            if(!Character.isLetterOrDigit(ch2))
+            {
+                right--;
+                continue;
+            }
+
+            if(ch1 != ch2)
+            {
+                return false;
+            }
+
             left++;
             right--;
-        
-        }
-        
-        System.out.println(bFlag);
-    }
 
+        }
+
+        return true ;   
+    
+    }
 }
 
 /*
 --------------------------------------------------------------------
 Problem Name : Valid Palindrome
+LeetCode     : #125
 
 Problem:
-Given a string, determine whether it reads the same from left to
-right and right to left.
+Given a string s, determine whether it is a palindrome after
+converting all uppercase letters to lowercase and removing all
+non-alphanumeric characters.
+
+A palindrome reads the same forward and backward.
 
 Approach:
-Use two pointers, left and right, starting from the beginning and
-end of the string.
+Use the Two Pointers technique.
 
-- Compare the characters at left and right.
-- If they are different, the string is not a palindrome.
-- If they match, move left forward and right backward.
-- Continue until the pointers meet or cross.
+- Initialize left at the beginning and right at the end of the string.
+- Convert both characters to lowercase before comparison.
+- If the left character is not alphanumeric, move left forward.
+- If the right character is not alphanumeric, move right backward.
+- If both characters are alphanumeric but do not match, return false.
+- If they match, move both pointers toward the center.
+- If the pointers meet or cross, return true.
 
-This avoids creating a reversed string and checks the palindrome
-directly from both ends.
+Character.isLetterOrDigit() is used to skip spaces, punctuation,
+and other non-alphanumeric characters.
 
 Complexity:
 Time  : O(n)

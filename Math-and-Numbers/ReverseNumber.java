@@ -34,39 +34,45 @@ class Solution {
 
 /*
 --------------------------------------------------------------------
-Problem Name : Reverse Number
-LeetCode     : 7
+Problem Name : Reverse Integer
+LeetCode     : #7
 
-Description:
-This folder contains problems related to mathematical operations,
-number manipulation, and mathematical problem-solving techniques.
+Problem:
+Given a signed 32-bit integer x, reverse its digits and return
+the reversed integer.
 
-Topics Covered:
-- Reverse Integer
-- Palindrome Number
-- Add Digits
-- Plus One
-- Square Root Calculation
-- Prime Numbers
-- GCD and LCM
-- Number Properties
-- Digit Extraction and Manipulation
+If reversing the integer causes it to go outside the signed
+32-bit integer range, return 0.
 
 Approach:
-Practice mathematical problems by applying basic arithmetic
-operations, number properties, and mathematical algorithms.
+Use Mathematical Digit Manipulation to reverse the integer
+and handle integer overflow.
 
-- Understand the mathematical logic behind each problem.
-- Use arithmetic operators to manipulate numbers.
-- Apply mathematical properties to optimize solutions.
-- Handle positive numbers, negative numbers, and zero.
-- Consider integer overflow wherever necessary.
-- Analyze time and space complexity for each solution.
+- Initialize temp = x to preserve the original number.
+- Initialize rev = 0 to store the reversed number.
+- Traverse the digits of the number while temp != 0.
+- Extract the last digit using temp % 10.
+- Before updating rev, check for positive integer overflow.
+- Check whether rev exceeds Integer.MAX_VALUE / 10.
+- If rev equals Integer.MAX_VALUE / 10, ensure digit does
+  not exceed 7.
+- Check for negative integer overflow using Integer.MIN_VALUE.
+- If rev equals Integer.MIN_VALUE / 10, ensure digit is
+  not smaller than -8.
+- If overflow occurs, return 0.
+- Otherwise, update rev using rev * 10 + digit.
+- Remove the last digit from temp using temp / 10.
+- Continue until all digits are processed.
+- Return rev as the reversed integer.
 
-Purpose:
-To improve mathematical problem-solving skills, logical thinking,
-and algorithmic efficiency through coding practice.
+Java automatically preserves the sign during integer division
+and remainder operations, so the same logic handles both
+positive and negative numbers.
 
-Language: Java
+Complexity:
+Time  : O(log10 |x|), where x is the input integer.
+Space : O(1), because only a constant number of variables
+        are used.
+
 --------------------------------------------------------------------
 */
